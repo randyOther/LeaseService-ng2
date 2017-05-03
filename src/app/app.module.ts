@@ -1,7 +1,7 @@
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule,JsonpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 
@@ -17,7 +17,7 @@ import { AppState, InternalStateType } from './app.service';
 import { GlobalState } from './global.state';
 import { NgaModule } from './theme/nga.module';
 import { PagesModule } from './pages/pages.module';
-import { MockModule } from "./mock/mock.module";
+// import { MockModule } from "./mock/mock.module";
 // Application wide providers
 const APP_PROVIDERS = [
   AppState,
@@ -41,12 +41,13 @@ export type StoreType = {
   imports: [ // import Angular's modules
     BrowserModule,
     HttpModule,
+    JsonpModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
     NgaModule.forRoot(),
     PagesModule,
-    MockModule,
+    // MockModule,
     routing
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection

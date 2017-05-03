@@ -3,3 +3,4 @@ export * from './baMenu';
 export * from './baThemePreloader';
 export * from './baThemeSpinner';
 export * from './authorize';
+export * from './account';

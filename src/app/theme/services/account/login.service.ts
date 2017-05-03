@@ -4,8 +4,8 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import {User} from '../../model/user';
-// import 'rxjs/add/observable/throw';
+import {User} from '../../../model/user';
+import 'rxjs/add/observable/throw';
 @Injectable()
 export class LoginService{
      baseUrl="http://localhost:8080";
@@ -16,9 +16,7 @@ export class LoginService{
      login(userInfo:User):Observable<any>{
           let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-      let loginUrl=this.baseUrl+"/User/login"
-      console.log(loginUrl);
-      console.log(userInfo);
+      let loginUrl=this.baseUrl+"/User/login";
        return this.http.post(loginUrl,{userInfo},options).map(this.extractData).catch(this.handleError);
      }
      private extractData(res: Response) {

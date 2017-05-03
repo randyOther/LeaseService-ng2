@@ -13,6 +13,28 @@ export const PAGES_MENU = [
             order: 0
           }
         }
+      },
+      {
+        path:'setting',
+        data:{
+           menu: {
+            title: 'Setting',
+            icon: 'ion-android-laptop',
+            selected: false,
+            expanded: false,
+            order: 800,
+          }
+        },
+        children:[
+          {
+            path: 'userSetting',
+            data: {
+              menu: {
+                title: 'UserSetting',
+              }
+            }   
+          }
+        ]
       }
     ]
   }

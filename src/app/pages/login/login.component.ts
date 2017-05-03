@@ -5,6 +5,7 @@ import 'style-loader!./login.scss';
 import {BaThemeSpinner} from '../../theme/services'
 import {AuthService} from '../../theme/services/authorize'
 import {LoginService} from './login.service';
+// import {LoginService} from '../../theme/services/account';
 import {User} from '../../model/user';
 
 @Component({
@@ -17,7 +18,7 @@ export class Login {
   public email:AbstractControl;
   public password:AbstractControl;
   public submitted:boolean = false;
-  public userInfo:User;
+  public userInfo:User={userName:"",password:"",companyName:""};
   constructor(fb:FormBuilder,private loginService:LoginService, private authService:AuthService,public router:Router,private _spinner:BaThemeSpinner) {
     this.form = fb.group({
       'email': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
@@ -31,37 +32,15 @@ export class Login {
   public onSubmit(values:Object):void {
     this.submitted = true;
     if (this.form.valid) {
-      
       //Pro env
-    //   this.loginService.login(this.userInfo).subscribe(re=>{
-    //      if(re.status!=0)
-    //      {
-    //        return;
-    //      }
-    //      this.authService.login().subscribe(()=>{
-    //       if(this.authService.isLoggedIn){
-    //         let redirect=this.authService.redirectUrl?this.authService.redirectUrl:'/pages/dashboard';
-    //         let navigationExtras:NavigationExtras={
-    //           preserveQueryParams:true,
-    //           preserveFragment:true
-    //         }
-    //         this.router.navigate([redirect]);
-    //         this._spinner.show();
-    //       }
-    //   });
-    // });
-    
-    //Test env
-    this.loginService.loginTest().subscribe(re=>{  
-      console.log(re);
-      if(re.status!=0)
-         {
-           return;
-         }
+      this.userInfo.userName=this.email.value;
+      this.userInfo.password=this.password.value;
+      this.loginService.login(this.userInfo).subscribe(re=>{
+        console.log(re);
          this.authService.login().subscribe(()=>{
           if(this.authService.isLoggedIn){
             let redirect=this.authService.redirectUrl?this.authService.redirectUrl:'/pages/dashboard';
-            let navigationExtras:NavigationExtras={
+              let navigationExtras:NavigationExtras={
               preserveQueryParams:true,
               preserveFragment:true
             }
@@ -69,7 +48,6 @@ export class Login {
             this._spinner.show();
           }
       });
-
     });
     }
   }

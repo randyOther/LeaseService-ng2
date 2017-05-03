@@ -4,7 +4,8 @@ import {EmailValidator, EqualPasswordsValidator} from '../../theme/validators';
 
 import 'style-loader!./register.scss';
 import { RegisterService } from "./register.service";
-import {User} from '../../model/user'
+import {signUpDTO} from '../../model/account/signUpDTO'
+import {signUpModel} from '../../model/account/signUpModel';
 @Component({
   selector: 'register',
   templateUrl: './register.html',
@@ -20,7 +21,7 @@ export class Register {
 
   public submitted:boolean = false;
 
-  private registerUser:User={id:"",email:"",password:"",name:"",firstName:"",lastName:"",status:-1};
+  private registerUserDTO:signUpDTO={userName:"",password:"",companyName:""};
 
   constructor(fb:FormBuilder, private registerService:RegisterService) {
 
@@ -43,9 +44,9 @@ export class Register {
   public onSubmit(values:Object):void {
     this.submitted = true;
     if (this.form.valid) {
-       this.registerUser.name=this.name.value;
-       this.registerUser.email=this.email.value;
-       this.registerUser.password=this.password.value;
+    this.registerUserDTO.companyName=this.form.controls['name'].value;
+    this.registerUserDTO.userName=this.form.controls['email'].value;
+    this.registerUserDTO.password=this.form.controls['password'].value;
       //  this.registerService.registerUser(this.registerUser).then(re=>{
       //    if(re.status!=-0){
       //      return;
@@ -53,7 +54,7 @@ export class Register {
       //    console.log("Register user successful");
       //  });
 
-      this.registerService.registerUserObservable(this.registerUser).subscribe(re=>{
+      this.registerService.registerUserObservable(this.registerUserDTO).subscribe(re=>{
         console.log(re);
       })
     }

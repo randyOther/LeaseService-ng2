@@ -49,7 +49,8 @@ import {
   BaThemePreloader,
   BaThemeSpinner,
   AuthGuard,
-  AuthService
+  AuthService,
+  LoginService
 } from './services';
 
 import {
@@ -93,7 +94,8 @@ const NGA_SERVICES = [
   BaThemeSpinner,
   BaMenuService,
   AuthGuard,
-  AuthService
+  AuthService,
+  LoginService
 ];
 
 const NGA_VALIDATORS = [

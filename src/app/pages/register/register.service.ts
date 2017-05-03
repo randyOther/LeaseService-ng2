@@ -4,17 +4,19 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import {User} from '../../model/user';
+import {signUpDTO} from '../../model/account/signUpDTO';
+import {signUpModel} from '../../model/account/signUpModel';
 @Injectable()
 export class RegisterService{
-    registerUrl="app/mock/MockUserDatas";
+    // registerUrl="app/mock/MockUserDatas";
+    baseUrl="http://localhost:8080";
     constructor(private http:Http){}
 
-    registerUser(registerUser:User):Promise<User>{
+    registerUser(registerUser:signUpDTO):Promise<signUpModel>{
         let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(this.registerUrl, { registerUser }, options)
+    return this.http.post(this.baseUrl, { registerUser }, options)
                .toPromise()
                .then(this.extractData)
                .catch(this.handleError);
@@ -23,11 +25,13 @@ export class RegisterService{
     let body = res.json();
     return body || { };
   }
-  registerUserObservable(registerUser:User):Observable<User>{
+  registerUserObservable(registerUser:signUpDTO):Observable<signUpModel>{
      let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    
-    return this.http.post(this.registerUrl,{registerUser},options).map(this.extractData).catch(this.handleError);
+    debugger;
+    let registerUrl= this.baseUrl+"/User/SignUp";
+    console.log(registerUser);
+    return this.http.post(registerUrl,registerUser,options).map(this.extractData).catch(this.handleError);
   }
   private handleError (error: Response | any) {
     // In a real world app, you might use a remote logging infrastructure
