@@ -11,7 +11,6 @@ import {signUpModel} from '../../model/account/signUpModel';
   templateUrl: './register.html',
 })
 export class Register {
-
   public form:FormGroup;
   public name:AbstractControl;
   public email:AbstractControl;
@@ -21,7 +20,7 @@ export class Register {
 
   public submitted:boolean = false;
 
-  private registerUserDTO:signUpDTO={userName:"",password:"",companyName:""};
+  private registerUserDTO:signUpDTO={UserName:"",Password:"",CompanyName:""};
 
   constructor(fb:FormBuilder, private registerService:RegisterService) {
 
@@ -44,9 +43,9 @@ export class Register {
   public onSubmit(values:Object):void {
     this.submitted = true;
     if (this.form.valid) {
-    this.registerUserDTO.companyName=this.form.controls['name'].value;
-    this.registerUserDTO.userName=this.form.controls['email'].value;
-    this.registerUserDTO.password=this.form.controls['password'].value;
+    this.registerUserDTO.CompanyName=this.form.controls['name'].value;
+    this.registerUserDTO.UserName=this.form.controls['email'].value;
+    this.registerUserDTO.Password=this.repeatPassword.value;
       //  this.registerService.registerUser(this.registerUser).then(re=>{
       //    if(re.status!=-0){
       //      return;

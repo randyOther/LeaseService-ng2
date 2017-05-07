@@ -6,7 +6,7 @@ import {BaThemeSpinner} from '../../theme/services'
 import {AuthService} from '../../theme/services/authorize'
 import {LoginService} from './login.service';
 // import {LoginService} from '../../theme/services/account';
-import {User} from '../../model/user';
+import {loginDTO} from '../../model/account/loginDTO';
 
 @Component({
   selector: 'login',
@@ -18,7 +18,7 @@ export class Login {
   public email:AbstractControl;
   public password:AbstractControl;
   public submitted:boolean = false;
-  public userInfo:User={userName:"",password:"",companyName:""};
+  public userInfo:loginDTO={userName:"",password:""};
   constructor(fb:FormBuilder,private loginService:LoginService, private authService:AuthService,public router:Router,private _spinner:BaThemeSpinner) {
     this.form = fb.group({
       'email': ['', Validators.compose([Validators.required, Validators.minLength(4)])],

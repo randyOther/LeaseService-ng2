@@ -1,4 +1,4 @@
-export class userView
+export class UserModel
 {
     userId:  number;
     email: string;
@@ -11,10 +11,10 @@ export class userView
     modifyDate: string;
     createByUserId: number;
     modifyByUserId: number;
-    role:role;
+    role:RoleModel;
 }
 
-export class role
+export class RoleModel
 {
         userInfoId: 0;
         userId: 0;

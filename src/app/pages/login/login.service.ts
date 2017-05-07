@@ -4,22 +4,20 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import {User} from '../../model/user';
+import {LoginDTO} from '../../model/account/loginDTO';
+import { UserModel  } from "../../model/account/userModel";
 // import 'rxjs/add/observable/throw';
 @Injectable()
 export class LoginService{
      baseUrl="http://localhost:8080";
      constructor(private http:Http){
-
      }
-
-     login(userInfo:User):Observable<any>{
+     login(loginDTO:LoginDTO):Observable<UserModel>{
           let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
       let loginUrl=this.baseUrl+"/User/login"
       console.log(loginUrl);
-      console.log(userInfo);
-       return this.http.post(loginUrl,{userInfo},options).map(this.extractData).catch(this.handleError);
+       return this.http.post(loginUrl,JSON.stringify(loginDTO),options).map(this.extractData).catch(this.handleError);
      }
      private extractData(res: Response) {
     let body = res.json();
@@ -33,7 +31,6 @@ export class LoginService{
   }
 
   private handleError (error: Response | any) {
-    // In a real world app, you might use a remote logging infrastructure
     let errMsg: string;
     if (error instanceof Response) {
       const body = error.json() || '';
