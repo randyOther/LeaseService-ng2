@@ -17,7 +17,7 @@ import { AppState, InternalStateType } from './app.service';
 import { GlobalState } from './global.state';
 import { NgaModule } from './theme/nga.module';
 import { PagesModule } from './pages/pages.module';
-// import { MockModule } from "./mock/mock.module";
+import { LocalStorageModule } from "angular-2-local-storage";
 // Application wide providers
 const APP_PROVIDERS = [
   AppState,
@@ -47,7 +47,9 @@ export type StoreType = {
     ReactiveFormsModule,
     NgaModule.forRoot(),
     PagesModule,
-    // MockModule,
+    LocalStorageModule.withConfig({
+      storageType:'localStorage'
+    }),
     routing
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection

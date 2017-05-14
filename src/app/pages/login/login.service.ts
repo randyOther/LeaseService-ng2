@@ -4,7 +4,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import {LoginDTO} from '../../model/account/loginDTO';
+import { LoginUserDTO } from "../../model/account/loginDTO";
 import { UserModel  } from "../../model/account/userModel";
 // import 'rxjs/add/observable/throw';
 @Injectable()
@@ -12,8 +12,8 @@ export class LoginService{
      baseUrl="http://localhost:8080";
      constructor(private http:Http){
      }
-     login(loginDTO:LoginDTO):Observable<UserModel>{
-          let headers = new Headers({ 'Content-Type': 'application/json' });
+     login(loginDTO:LoginUserDTO):Observable<UserModel>{
+          let headers = new Headers({ 'Content-Type': 'application/json'});
     let options = new RequestOptions({ headers: headers });
       let loginUrl=this.baseUrl+"/User/login"
       console.log(loginUrl);

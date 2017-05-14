@@ -1,4 +1,4 @@
-export class UserModel
+export class User
 {
     userId:  number;
     email: string;
@@ -13,7 +13,12 @@ export class UserModel
     modifyByUserId: number;
     role:RoleModel;
 }
-
+export class UserModel{
+  rerutnModel:User;
+   uniqueID: string;
+  returnMessage: string;
+  success: boolean;
+}
 export class RoleModel
 {
         userInfoId: 0;

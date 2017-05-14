@@ -5,8 +5,8 @@ import 'style-loader!./login.scss';
 import {BaThemeSpinner} from '../../theme/services'
 import {AuthService} from '../../theme/services/authorize'
 import {LoginService} from './login.service';
-// import {LoginService} from '../../theme/services/account';
-import {loginDTO} from '../../model/account/loginDTO';
+import { LoginUserDTO } from "../../model/account/loginDTO";
+import {UserModel} from '../../model/account/userModel';
 
 @Component({
   selector: 'login',
@@ -18,7 +18,7 @@ export class Login {
   public email:AbstractControl;
   public password:AbstractControl;
   public submitted:boolean = false;
-  public userInfo:loginDTO={userName:"",password:""};
+  public userInfo:LoginUserDTO={userName:"",password:""};
   constructor(fb:FormBuilder,private loginService:LoginService, private authService:AuthService,public router:Router,private _spinner:BaThemeSpinner) {
     this.form = fb.group({
       'email': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
@@ -35,9 +35,8 @@ export class Login {
       //Pro env
       this.userInfo.userName=this.email.value;
       this.userInfo.password=this.password.value;
-      this.loginService.login(this.userInfo).subscribe(re=>{
-        console.log(re);
-         this.authService.login().subscribe(()=>{
+      this.loginService.login(this.userInfo).subscribe((re:UserModel)=>{
+         this.authService.loginAuth(re).subscribe(()=>{
           if(this.authService.isLoggedIn){
             let redirect=this.authService.redirectUrl?this.authService.redirectUrl:'/pages/dashboard';
               let navigationExtras:NavigationExtras={
