@@ -1,13 +1,12 @@
 import {Component} from '@angular/core';
 
 import {GlobalState} from '../../../global.state';
-
-import 'style-loader!./baPageTop.scss';
 import { AuthService } from "../../services/authorize";
 
 @Component({
   selector: 'ba-page-top',
   templateUrl: './baPageTop.html',
+  styleUrls: ['./baPageTop.scss']
 })
 export class BaPageTop {
 
@@ -29,8 +28,7 @@ export class BaPageTop {
   public scrolledChanged(isScrolled) {
     this.isScrolled = isScrolled;
   }
-  
-  public signOut(){
+    public signOut(){
     this.authService.logout();
   }
 }

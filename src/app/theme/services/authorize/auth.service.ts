@@ -20,7 +20,7 @@ export class AuthService {
     if(loginState){
       this.storageService.set("loginState",true);
     }
-    else{this.storageService.add("loginState",true);}
+    else{this.storageService.set("loginState",true);}
     return Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
   }
   loginAuth(user:UserModel):Observable<boolean>{

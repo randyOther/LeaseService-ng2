@@ -35,9 +35,23 @@ export class Login {
       //Pro env
       this.userInfo.userName=this.email.value;
       this.userInfo.password=this.password.value;
-      this.loginService.login(this.userInfo).subscribe((re:UserModel)=>{
-         this.authService.loginAuth(re).subscribe(()=>{
-          if(this.authService.isLoggedIn){
+      //Pro
+    //   this.loginService.login(this.userInfo).subscribe((re:UserModel)=>{
+    //      this.authService.loginAuth(re).subscribe(()=>{
+    //       if(this.authService.isLoggedIn){
+    //         let redirect=this.authService.redirectUrl?this.authService.redirectUrl:'/pages/dashboard';
+    //           let navigationExtras:NavigationExtras={
+    //           preserveQueryParams:true,
+    //           preserveFragment:true
+    //         }
+    //         this.router.navigate([redirect]);
+    //         this._spinner.show();
+    //       }
+    //   });
+    // });
+    //Test
+    this.authService.login().subscribe(()=>{
+       if(this.authService.isLoggedIn){
             let redirect=this.authService.redirectUrl?this.authService.redirectUrl:'/pages/dashboard';
               let navigationExtras:NavigationExtras={
               preserveQueryParams:true,
@@ -46,7 +60,6 @@ export class Login {
             this.router.navigate([redirect]);
             this._spinner.show();
           }
-      });
     });
     }
   }
