@@ -33,6 +33,14 @@ export const PAGES_MENU = [
                 title: 'UserSetting',
               }
             }   
+          },
+          {
+            path:'roleSetting',
+            data:{
+              menu:{
+                title:'RoleSetting'
+              }
+            }
           }
         ]
       }
