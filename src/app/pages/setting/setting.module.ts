@@ -24,7 +24,7 @@ import { RoleSettingService } from "./role/components/roleSetting/roleSetting.se
         Ng2SmartTableModule,
         DataTableModule,
         HotTableModule,
-        NgbModalModule,
+        NgbModalModule.forRoot(),
         SlimLoadingBarModule.forRoot(),
         routing
     ],

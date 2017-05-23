@@ -3,15 +3,12 @@ import { NgbModal,NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { RoleSettingService } from "./roleSetting.service";
 import { LocalDataSource } from "ng2-smart-table";
-
+import { DefaultModal } from '../../../../common/modals/default-modal.component'
 @Component({
     selector:'user-role-setting',
     templateUrl:'roleSetting.html',
     styleUrls:['./roleSetting.scss']
 })
-export class NgdbModalContext{
-  constructor(public activeModal: NgbActiveModal) {}
-}
 export class RoleSettingComponent{
        settings = {
     add: {
@@ -64,11 +61,14 @@ export class RoleSettingComponent{
   }
 
   onDeleteConfirm(event):void{
-        if (window.confirm('Are you sure you want to delete?')) {
-      event.confirm.resolve();
-    } else {
+    const activeModal = this.modalService.open(DefaultModal,{size:'sm'});
+     activeModal.componentInstance.modalHeader='Warning';
+     activeModal.componentInstance.modalContent="Are you sure want to delete";
+     activeModal.result.then((result)=>{
+        event.confirm.resolve();
+     },(reason)=>{
       event.confirm.reject();
-    }
+     });
   }
 }
 
