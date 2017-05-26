@@ -12,7 +12,7 @@ import {UserModel} from '../../model/account/userModel';
   selector: 'login',
   templateUrl: './login.html',
 })
-export class Login {
+export class Login{
 
   public form:FormGroup;
   public email:AbstractControl;

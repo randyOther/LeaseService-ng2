@@ -10,7 +10,25 @@ import { DefaultModal } from '../../../../common/modals/default-modal.component'
     styleUrls:['./roleSetting.scss']
 })
 export class RoleSettingComponent{
-       settings = {
+
+    roles:any[];
+    departments:any[];
+    settings={};
+  source: LocalDataSource = new LocalDataSource();
+
+  constructor(protected service:RoleSettingService,private modalService:NgbModal){
+       this.initSettings();
+       this.service.getData().then((data)=>{
+        this.source.load(data);
+      this.source.setPaging(5,5,false);
+    });
+
+  }
+
+  private initSettings(){
+    this.departments=[{value:'1',title:'XPG'},{value:'2',title:'AVA'}];
+    this.roles=[{value:'1',title:'管理员'},{value:'2',title:'普通用户'},{value:'3',title:'合作伙伴'}];
+    this.settings = {
     add: {
       addButtonContent: '<i class="ion-ios-plus-outline"></i>',
       createButtonContent: '<i class="ion-checkmark"></i>',
@@ -26,40 +44,41 @@ export class RoleSettingComponent{
       confirmDelete: true
     },
     columns: {
-      id: {
-        title: 'ID',
-        type: 'number'
+      department: {
+        title: '部门',
+        type: 'html',
+        editor:{
+          type:'list',
+          config:{
+            list:this.departments
+          }
+        }
       },
-      firstName: {
-        title: 'First Name',
+      name: {
+        title: '角色名称',
+        type: 'html',
+        editor:{
+          type:'list',
+          config:{
+            list:this.roles 
+          }
+        }
+      },
+      createDate: {
+        title: '创建时间',
         type: 'string'
       },
-      lastName: {
-        title: 'Last Name',
-        type: 'string'
-      },
-      username: {
-        title: 'Username',
-        type: 'string'
-      },
-      email: {
-        title: 'E-mail',
-        type: 'string'
-      },
-      age: {
-        title: 'Age',
-        type: 'number'
+      modifyDate: {
+        title: '更新时间',
+        type: 'string',
       }
-    }
+    },
+    // hideHeader:true
+    hideSubHeader:true
   };
+}
 
-  source: LocalDataSource = new LocalDataSource();
-
-  constructor(protected service:RoleSettingService,private modalService:NgbModal){
-      this.service.getData().then((data)=>this.source.load
-      (data));
-  }
-
+//customer https://github.com/akveo/ng2-smart-table/blob/master/src/app/pages/examples/custom-edit-view/custom-editor.component.ts#L14
   onDeleteConfirm(event):void{
     const activeModal = this.modalService.open(DefaultModal,{size:'sm'});
      activeModal.componentInstance.modalHeader='Warning';

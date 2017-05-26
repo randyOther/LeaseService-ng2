@@ -1,6 +1,12 @@
 <div class="widgets">
     <div class="row">
         <ba-card title="Role" baCardClass="with-scroll" class="smart-table-container">
+            <div class=".col-md-4">
+                <label for="exampleSelect1">Select Page</label>
+                <select class="form-control" id="exampleSelect1">
+                    <option>1</option>
+                    </select>
+            </div>
             <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"></ng2-smart-table>
         </ba-card>
     </div>
