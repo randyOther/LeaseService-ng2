@@ -12,13 +12,13 @@ export class RoleSettingService {
     },
     {
       department: '1',
-      name: '1',
+      name: '2',
       createDate: '2017.05.26',
       modifyDate: '2017.05.26',
     },
     {
      department: '1',
-      name: '1',
+      name: '3',
       createDate: '2017.05.26',
       modifyDate: '2017.05.26',
     },
@@ -30,13 +30,13 @@ export class RoleSettingService {
     },
     {
        department: '1',
-      name: '1',
+      name: '2',
       createDate: '2017.05.26',
       modifyDate: '2017.05.26',
     },
     {
        department: '1',
-      name: '1',
+      name: '3',
       createDate: '2017.05.26',
       modifyDate: '2017.05.26',
     },
@@ -48,13 +48,13 @@ export class RoleSettingService {
     },
     {
        department: '1',
-      name: '1',
+      name: '2',
       createDate: '2017.05.26',
       modifyDate: '2017.05.26',
     },
     {
       department: '1',
-      name: '1',
+      name: '3',
       createDate: '2017.05.26',
       modifyDate: '2017.05.26',
     },
@@ -66,7 +66,13 @@ export class RoleSettingService {
     },
     {
       department: '2',
-      name: '1',
+      name: '2',
+      createDate: '2017.05.26',
+      modifyDate: '2017.05.26',
+    },
+    {
+       department: '2',
+      name: '3',
       createDate: '2017.05.26',
       modifyDate: '2017.05.26',
     },
@@ -78,19 +84,13 @@ export class RoleSettingService {
     },
     {
        department: '2',
-      name: '1',
-      createDate: '2017.05.26',
-      modifyDate: '2017.05.26',
-    },
-    {
-       department: '2',
-      name: '1',
+      name: '2',
       createDate: '2017.05.26',
       modifyDate: '2017.05.26',
     },
     {
      department: '1',
-      name: '1',
+      name: '3',
       createDate: '2017.05.26',
       modifyDate: '2017.05.26',
     }

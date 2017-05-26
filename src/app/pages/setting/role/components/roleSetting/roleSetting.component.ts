@@ -52,7 +52,8 @@ export class RoleSettingComponent{
           config:{
             list:this.departments
           }
-        }
+        },
+      valuePrepareFunction:(cell,row)=>{ return this.getDepartmentName(cell);}
       },
       name: {
         title: '角色名称',
@@ -60,22 +61,44 @@ export class RoleSettingComponent{
         editor:{
           type:'list',
           config:{
-            list:this.roles 
+            list:this.roles,
           }
-        }
+        },
+        valuePrepareFunction:(cell,row)=>{ return this.getRoleName(cell);}
       },
       createDate: {
         title: '创建时间',
-        type: 'string'
+        type: 'string',
+        editable:false
       },
       modifyDate: {
         title: '更新时间',
         type: 'string',
+        editable:false
       }
     },
     // hideHeader:true
-    hideSubHeader:true
+    // hideSubHeader:true,
+    actions:{
+      position:'right'
+    }
   };
+}
+
+getRoleName(cellValue):string{
+  for(let index=0;index<this.roles.length;index++){
+    if(this.roles[index].value===cellValue)
+       return this.roles[index].title;
+  }
+  return '';
+}
+
+getDepartmentName(cellValue):string{
+    for(let index=0;index<this.departments.length;index++){
+    if(this.departments[index].value===cellValue)
+       return this.departments[index].title;
+  }
+  return '';
 }
 
 //customer https://github.com/akveo/ng2-smart-table/blob/master/src/app/pages/examples/custom-edit-view/custom-editor.component.ts#L14
