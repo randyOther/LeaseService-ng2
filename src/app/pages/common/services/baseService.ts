@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class BaseService{
-    baseUrl:String;
+    baseUrl:'http://localhost:8080/';
     constructor(public baseHttp:Http){
     }
 

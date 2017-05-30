@@ -18,7 +18,7 @@ export const PAGES_MENU = [
         path:'setting',
         data:{
            menu: {
-            title: 'Setting',
+            title: '基础设置',
             icon: 'ion-android-laptop',
             selected: false,
             expanded: false,
@@ -30,7 +30,7 @@ export const PAGES_MENU = [
             path: 'userSetting',
             data: {
               menu: {
-                title: 'UserSetting',
+                title: '用户设置',
               }
             }   
           },
@@ -38,7 +38,15 @@ export const PAGES_MENU = [
             path:'roleSetting',
             data:{
               menu:{
-                title:'RoleSetting'
+                title:'角色设置'
+              }
+            }
+          },
+          {
+            path:'companySetting',
+            data:{
+              menu:{
+                title:'公司设置'
               }
             }
           }

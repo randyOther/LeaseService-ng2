@@ -15,6 +15,8 @@ import {UserSettingInputsComponent} from './user/components/settingInputs/settin
 import { RoleComponent } from "./role/role.component";
 import { RoleSettingComponent } from "./role/components/roleSetting/roleSetting.component";
 import { RoleSettingService } from "./role/components/roleSetting/roleSetting.service";
+import { CompanySettingComponent } from "./company/companySetting.component";
+import { CompanySettingService } from "./company/companySetting.service";
 @NgModule({
     imports:[
         CommonModule,
@@ -33,10 +35,12 @@ import { RoleSettingService } from "./role/components/roleSetting/roleSetting.se
         UserSetting,
         UserSettingInputsComponent,
         RoleComponent,
-        RoleSettingComponent
+        RoleSettingComponent,
+        CompanySettingComponent
     ],
     providers:[
-        RoleSettingService
+        RoleSettingService,
+        CompanySettingService
     ]
 })
 

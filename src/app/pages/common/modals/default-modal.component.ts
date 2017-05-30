@@ -11,7 +11,7 @@ export class DefaultModal implements OnInit {
 
   modalHeader: string;
   modalContent: string = `Lorem ipsum dolor sit amet,
-   consectetuer adipiscing elit, sed diam nonummy
+   consectetuer adipiscing elit, sed diam nonummyß
    nibh euismod tincidunt ut laoreet dolore magna aliquam
    erat volutpat. Ut wisi enim ad minim veniam, quis
    nostrud exerci tation ullamcorper suscipit lobortis

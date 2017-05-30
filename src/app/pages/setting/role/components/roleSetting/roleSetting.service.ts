@@ -1,5 +1,13 @@
 import {Injectable} from '@angular/core';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 
+
+import { RoleDTO } from '../../../../../model/account/roleDTO';
+import { ReturnModel } from '../../../../../model/account/baseModel';
+import { BaseService } from '../../../../common/services/baseService';
 @Injectable()
 export class RoleSettingService {
 
@@ -148,6 +156,31 @@ export class RoleSettingService {
       isPercentUp: false
     }
   ];
+  constructor(protected roleHttp:Http,protected baseService:BaseService){
+
+  }
+
+  getRoles():Observable<any[]>{
+   return this.roleHttp.get(this.baseService.baseUrl+'/role/GetUserInfos').map(this.baseService.extractData).catch(this.baseService.handlerError);
+  }
+
+  addRole(roleInfo:RoleDTO):Observable<ReturnModel>{
+    let requestUrl='http://localhost:8080/Role/CreateRole';
+    let requestJson=JSON.stringify(roleInfo);
+    let headers = new Headers({ 'Content-Type': 'application/json'});
+    let options = new RequestOptions({ headers: headers });
+    console.log(requestUrl)
+    console.log(requestJson);
+   return this.roleHttp.post(requestUrl,requestJson,options).map(this.baseService.extractData).catch(this.baseService.handlerError);
+  }
+
+  updateRole(roleInfo:RoleDTO){
+     this.roleHttp.post(this.baseService.baseUrl+'/Role/CreateRole',JSON.stringify(roleInfo)).map(this.baseService.extractData).catch(this.baseService.handlerError);
+  }
+
+  removeRole(roleInfo:RoleDTO){
+    this.roleHttp.post(this.baseService.baseUrl+'/Role/RemoveRole',JSON.stringify(roleInfo)).map(this.baseService.extractData).catch(this.baseService.handlerError);
+  }
 
   getData(): Promise<any> {
     return new Promise((resolve, reject) => {

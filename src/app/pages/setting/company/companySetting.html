@@ -1,0 +1,11 @@
+<div class="widgets">
+    <ba-card title="公司设置" baCardClass="with-scroll">
+        <div class="widgets">
+            <div class="row">
+                <ba-card title="公司" baCardClass="with-scroll" class="smart-table-container">
+                    <ng2-smart-table [settings]="companySettings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (createConfirm)="onCreateConfirm($event)" (create)="onCreate($event)" (editConfirm)="onEditConfirm($event)"></ng2-smart-table>
+                </ba-card>
+            </div>
+        </div>
+    </ba-card>
+</div>
