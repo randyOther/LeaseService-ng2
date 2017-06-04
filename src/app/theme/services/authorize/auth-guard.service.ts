@@ -8,10 +8,11 @@ import {
   CanLoad, Route
 }                           from '@angular/router';
 import { AuthService }      from './auth.service';
+import { LocalStorageService } from "angular-2-local-storage";
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private storageService:LocalStorageService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     let url: string = state.url;
@@ -31,7 +32,8 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
   checkLogin(url: string): boolean {
     if (this.authService.isLoggedIn) { return true; }
-
+    var storageData=this.storageService.get("loginState");
+    if(storageData){return true;}
     // Store the attempted URL for redirecting
     this.authService.redirectUrl = url;
 
@@ -50,10 +52,3 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     return false;
   }
 }
-
-
-/*
-Copyright 2017 Google Inc. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/

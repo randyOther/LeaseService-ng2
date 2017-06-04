@@ -3,8 +3,7 @@ import {BaThemeSpinner} from "../../theme/services";
 
 @Component({
     selector:'setting',
-    styleUrls:['./setting.scss'],
-    templateUrl:'./setting.html'
+    template: `<router-outlet></router-outlet>`
 })
 export class SettingComponent{
     constructor(private _spinner:BaThemeSpinner){

@@ -24,7 +24,8 @@ export const routes: Routes = [
       canActivateChild:[AuthGuard],
       children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', loadChildren: 'app/pages/dashboard/dashboard.module#DashboardModule' }
+      { path: 'dashboard', loadChildren: 'app/pages/dashboard/dashboard.module#DashboardModule' },
+      {path:'setting',loadChildren:'app/pages/setting/setting.module#SettingModule'}
     ]
   }]
   }

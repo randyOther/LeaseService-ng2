@@ -1,0 +1,43 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form-horizontal">
+    <div class="form-group row" [ngClass]="{'has-error': (!orgName.valid && orgName.touched), 'has-success': (orgName.valid && orgName.touched)}">
+        <label for="inputName3" class="col-sm-2 control-label">公司名称</label>
+
+        <div class="col-sm-10">
+            <input [formControl]="orgName" type="text" class="form-control" id="inputName3" placeholder="公司名称">
+        </div>
+    </div>
+    <div class="form-group row" [ngClass]="{'has-error': (!email.valid && email.touched), 'has-success': (email.valid && email.touched)}">
+        <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
+
+        <div class="col-sm-10">
+            <input [formControl]="email" type="email" class="form-control" id="inputEmail3" placeholder="用户名">
+        </div>
+    </div>
+    <div class="form-group row" [ngClass]="{'has-error': (!phone.valid && phone.touched), 'has-success': (phone.valid && phone.touched)}">
+        <label for="inputName3" class="col-sm-2 control-label">联系电话</label>
+
+        <div class="col-sm-10">
+            <input [formControl]="phone" type="text" class="form-control" id="inputPhone3" placeholder="联系电话">
+        </div>
+    </div>
+    <div class="form-group row" [ngClass]="{'has-error': (!password.valid && password.touched), 'has-success': (password.valid && password.touched)}">
+        <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+
+        <div class="col-sm-10">
+            <input [formControl]="password" type="password" class="form-control" id="inputPassword3" placeholder="密码">
+        </div>
+    </div>
+    <div class="form-group row" [ngClass]="{'has-error': (!repeatPassword.valid && repeatPassword.touched), 'has-success': (repeatPassword.valid && repeatPassword.touched)}">
+        <label for="inputPassword4" class="col-sm-2 control-label">确认密码</label>
+
+        <div class="col-sm-10">
+            <input [formControl]="repeatPassword" type="password" class="form-control" id="inputPassword4" placeholder="确认密码">
+            <span *ngIf="!passwords.valid && (password.touched || repeatPassword.touched)" class="help-block sub-little-text">两次密码不匹配</span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="offset-sm-2 col-sm-10">
+            <button [disabled]="!form.valid" type="submit" class="btn btn-default btn-auth">更新用户信息</button>
+        </div>
+    </div>
+</form>
